@@ -5,7 +5,8 @@ defmodule WspsWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", WspsWeb do
+  scope "/", WspsWeb do
     pipe_through :api
+    post "/event", EventController, :create
   end
 end
