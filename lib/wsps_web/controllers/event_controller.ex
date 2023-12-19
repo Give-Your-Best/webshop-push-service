@@ -1,13 +1,12 @@
 defmodule WspsWeb.EventController do
   use WspsWeb, :controller
 
-  # alias Wsps.Events
   # alias Wsps.Event
 
   action_fallback WspsWeb.FallbackController
 
-  def create(conn, %{"event" => _event_params}) do
-    WspsWeb.Endpoint.broadcast("ping", "test", %{data: "test"})
+  def create(conn, %{"topic" => topic, "data" => data, "event" => event}) do
+    WspsWeb.Endpoint.broadcast(topic, event, data)
 
     conn
     |> put_status(:created)
