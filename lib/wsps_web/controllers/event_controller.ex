@@ -7,6 +7,8 @@ defmodule WspsWeb.EventController do
   action_fallback WspsWeb.FallbackController
 
   def create(conn, %{"event" => _event_params}) do
+    WspsWeb.Endpoint.broadcast("ping", "test", %{data: "test"})
+
     conn
     |> put_status(:created)
     |> put_resp_content_type("application/json")
